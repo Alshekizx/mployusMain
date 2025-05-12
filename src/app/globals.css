@@ -34,20 +34,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --text-dark: #eef1f5;
-    --text-muted: #a1a1aa;
-    --card-bg: #1f2937;
-    --border-color: #374151;
-    --background-light: linear-gradient(135deg, #0b1220 0%, #435169 30%,  #0b1220 60%, #435169 100%);
-    --primary-color: #3b82f6;
-    --primaryTrans-color: #3b83f662;
-    --secondary-color: #9ca3af;
-   
-    --accent-color: #3b82f6; 
+    --primary-color: #3b82f6;  
+    --primaryTrans-color:  #3b82f662;   /* blue (Get Started button) */
+    --secondary-color: #64748b;     /* muted text */
+    --background-light: linear-gradient(135deg, #f7fbff  0%, #e2f3ff 30%,  #f7fbff 60%, #dcf0fd 100%);   /* light background sections */
+    --text-dark: #1e293b;           /* dark text */
+    --text-muted: #475569;          /* subdued text */
+    --card-bg: #ffffff;             /* white cards */
+    --border-color: #e2e8f0;        /* light border for cards */
+    --accent-color: #22d3ee;   
+    --background: #e2f3ff;
+    --foreground: #171717;  
+    }
   }
-}
 
 body {
   font-family: 'Inter', sans-serif;

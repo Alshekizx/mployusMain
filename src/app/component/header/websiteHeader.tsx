@@ -115,9 +115,16 @@ export default function Header() {
         <Link href="#blog" className="block hover:text-[var(--text-dark)]">Blog</Link>
 
         <div className="flex justify-start space-x-4 pt-2">
-          <Image src="/logos/MployusLocumsLogo.png" alt="Logo" width={50} height={50} />
-          <Image src="/logos/MployusHRLogo.png" alt="Logo" width={50} height={50} />
-          <Image src="/logos/MployusRecruitmentLogo.png" alt="Logo" width={50} height={40} />
+          <div>
+            <Image src="/logos/MployusLocumsLogo.png" alt="Logo" width={50} height={50} className="w-full h-full object-cover"/>
+          </div>
+          <div>
+            <Image src="/logos/MployusHRLogo.png" alt="Logo" width={50} height={50} className="w-full h-full object-cover"/>
+          </div>
+          <div>
+            <Image src="/logos/MployusRecruitmentLogo.png" alt="Logo" width={50} height={50} className="w-full h-full object-cover" />
+          </div>
+          
         </div>
       </div>
     )}
