@@ -39,7 +39,7 @@ const ServicesSection = () => {
                 height={60}
                 className="object-contain"
               />
-              <span className={`mt-2 text-sm font-medium ${service.color}`}>{service.label}</span>
+              
             </div>
             <h3>{service.title}</h3>
             <p>
