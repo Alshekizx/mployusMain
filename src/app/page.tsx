@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import HeroSection from "./component/landingPage/hero";
 import ServicesSection from "./component/landingPage/serviceSection";
 import OtherServicesSection from "./component/landingPage/otherServices";
