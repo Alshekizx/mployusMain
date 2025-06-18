@@ -20,7 +20,7 @@ export default function HeroSection({
   title,
   description,
   breadcrumbs = [],
-  backgroundClassName = 'bg-[var(--primary-color)] card-texture-bg',
+ 
 }: HeroSectionProps) {
   return (
     <div className={`relative flex flex-col items-center w-full bg-[var(--primary-color)] `}>

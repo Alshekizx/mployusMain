@@ -52,16 +52,16 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {/* Date + Read Time */}
           <div className="flex items-center gap-2 text-sm text-[var(--text-muted)]">
             <CalendarDaysIcon className="w-4 h-4 text-[var(--text-muted)]" />
-            <span>{date}</span>
-            <span className="mx-1">·</span>
-            <span>{readTime}</span>
+            <span style={{fontSize:'12px'}}>{date}</span>
+           
+           
           </div>
 
           {/* Title */}
-          <p className="font-bold leading-snug text-[var(--text-dark)]">{title}</p>
+          <span style={{fontSize:'15px'}} className="font-bold leading-snug text-[var(--text-dark)]">{title}</span>
 
           {/* Description */}
-          <p className="text-[0.95rem] text-[var(--text-muted)] line-clamp-2">
+          <p style={{fontSize:'13px'}} className="text-[0.95rem] text-[var(--text-muted)] line-clamp-2">
             {description}
           </p>
 
@@ -79,14 +79,15 @@ const BlogCard: React.FC<BlogCardProps> = ({
                 alt={author.name}
                 width={100}
                 height={100}
+                className='object-cover w-full h-full'
               />
             </div>
             <div>
-              <p className="font-semibold text-[var(--text-dark)]">{author.name}</p>
-              <span className="text-sm text-[var(--text-muted)]">{author.position}</span>
+              <p style={{fontSize:'16px'}} className="font-semibold text-[var(--text-dark)]">{author.name}</p>
+              <span style={{fontSize:'14px'}} className="text-sm text-[var(--text-muted)]">{author.position}</span>
             </div>
           </div>
-          <span className="px-4 py-1 bg-[var(--primary-100)] text-[var(--primary-color)] rounded-full text-sm inline-block w-fit">
+          <span style={{fontSize:'10px'}} className="px-4 py-1 bg-[var(--primary-100)] text-[var(--primary-color)] rounded-full text-sm inline-block w-fit">
             Employment Contract
           </span>
           </div>

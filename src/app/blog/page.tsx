@@ -4,19 +4,15 @@ import BlogCard from '../component/blogComponent/blogCard';
 import { blogData } from './blogSampleData';
 import HeroSection from '../component/heroSection';
 
-const topFilters = ['All', 'Case Study', 'Management Guide'];
+const topFilters = ['All', 'Articles', 'Reports'];
 const sideFilters = [
   'All',
-  'Product Management',
-  'Control of Employment',
-  'Compensations and Benefits',
-  'Conducts',
-  'Statutory Leave',
-  'Health and Safety',
-  'Employee Unboarding',
-  'Performance Management',
-  'Workplace Culture',
-  'Leadership and Management',
+  'Career Advice',
+  'Hiring Process',
+  'Salary Advice',
+  'Employee Engagement',
+  'Diversity and Inclusion',
+  'Talent Trends',
 ];
 
 const BlogIndexPage = () => {
@@ -76,14 +72,14 @@ const BlogIndexPage = () => {
       {topFilters.map((filter) => (
       <button
         key={filter}
-        className={`px-4 py-2 border rounded-lg text-sm ${
+        className={`px-4 py-2  text-sm ${
           activeTopFilter === filter
-            ? 'bg-[var(--primary-color)] text-white border-[var(--primary-color)]'
-            : 'bg-[var(--secondary-100)] text-[var(--secondary-300)] border-[var(--secondary-300)]'
+            ? 'bg-[var(--primary-color)] text-white '
+            : 'bg-[var(--secondary-100)] text-[var(--secondary-300)] '
         }`}
         onClick={() => setActiveTopFilter(filter)}
       >
-        {filter}
+        <span>{filter}</span>
       </button>
     ))}
     </div>
@@ -95,6 +91,7 @@ const BlogIndexPage = () => {
         value={sortBy}
         onChange={(e) => setSortBy(e.target.value)}
         className="px-4 py-2 border rounded-lg text-sm bg-[var(--secondary-100)] text-[var(--secondary-300)] border-[var(--secondary-300)]"
+        style={{fontSize:'14px'}}
       >
         <option value="Newest">Newest</option>
         <option value="Oldest">Oldest</option>
@@ -121,7 +118,7 @@ const BlogIndexPage = () => {
                   onClick={() => setActiveSideFilter(filter)}
                   aria-pressed={activeSideFilter === filter}
                 >
-                  {filter}
+                 <span style={{fontSize:'16px'}}>{filter}</span>
                 </button>
               ))}
             </div>
