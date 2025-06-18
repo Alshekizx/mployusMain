@@ -23,7 +23,6 @@ const BlogCard: React.FC<BlogCardProps> = ({
   image,
   title,
   date,
-  readTime,
   description,
   author,
 }) => {

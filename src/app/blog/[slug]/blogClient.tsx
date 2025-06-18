@@ -37,7 +37,7 @@ const [selectedCategory] = useState<string | null>(null);
 
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center gap-8 pt-10">
+    <div className="w-full min-h-screen flex flex-col items-center gap-8 ">
       <HeroSection
              title="HR Blogs"
              description="Insights, trends, and practical tips on recruitment and shift-based workforce management for HR teams, locum workers, and business leaders."
@@ -58,16 +58,17 @@ const [selectedCategory] = useState<string | null>(null);
          {(
   // ✅ Regular Blog Header Card
   <div className="flex flex-col-reverse lg:flex-row bg-[var(--primary-color)] rounded-lg overflow-hidden p-4">
-    <div className="p-6 flex-1 text-white">
-      <h3 className=" font-bold mb-2">{blog.title}</h3>
-      <p className="text-sm mb-4" style={{ color: "white" }}>{blog.category}</p>
+    <div className="p-6 flex flex-col items-start text-white ">
+      <h3 style={{fontSize:'36px'}} className=" font-bold mb-2">{blog.title}</h3>
+      <p style={{fontSize:'13px', color: "white"}} className="px-5 py-2 bg-[var(--primary-400)] rounded-full mb-4">{blog.category}</p>
       <div className="flex items-center gap-3">
-        <div className="h-10 bg-[var(--primary-100)] rounded-full flex items-center justify-center overflow-hidden">
+        <div className="h-12 bg-[var(--primary-100)] rounded-full flex items-center justify-center overflow-hidden">
           <Image
             src="/logos/logo-icon.png"
             alt="MployUs Logo"
             width={40}
             height={40}
+            className='w-full h-full'
           />
         </div>
         <div>
@@ -88,13 +89,13 @@ const [selectedCategory] = useState<string | null>(null);
   </div>
 )}
 
-          <p className="text-[var(--text-muted)]">{blog.summary}</p>
+          <p style={{fontSize:'20px'}} className="text-[var(--text-muted)]">{blog.summary}</p>
 
           <div className="space-y-8">
             {blog.subtopics.map((subtopic, index) => (
               <div key={index}>
-                <h3 className=" font-semibold mb-2 text-[var(--text-dark)]">{subtopic.heading}</h3>
-                <p className="text-[var(--text-muted)]">{subtopic.content}</p>
+                <h3 style={{fontSize:'34px'}} className=" font-semibold mb-2 text-[var(--text-dark)]">{subtopic.heading}</h3>
+                <p style={{fontSize:'20px'}} className="text-[var(--text-muted)]">{subtopic.content}</p>
               </div>
             ))}
           </div>
