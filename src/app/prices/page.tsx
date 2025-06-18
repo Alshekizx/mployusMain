@@ -102,7 +102,7 @@ const PricesPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10">
           {pricingPlans.map((plan, index) => {
             const isExpanded = expandedPlans[index] || false;
             const baseFeatures = getBaseFeatures();
@@ -117,7 +117,7 @@ const PricesPage = () => {
                   featureList.push(
                     <li key={`${sectionKey}-${featureKey}`} className="flex items-center">
                       <svg
-                        className="w-6 h-6 mr-1 text-[var(--primary--color)]"
+                        className="w-6 h-6 mr-1 text-[var(--primary-color)]"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="3"
@@ -125,7 +125,7 @@ const PricesPage = () => {
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
-                      <span dangerouslySetInnerHTML={{ __html: highlightKeywords(featureKey) }} />
+                      <span style={{fontSize:'20px'}} dangerouslySetInnerHTML={{ __html: highlightKeywords(featureKey) }} />
                     </li>
                   );
                 }
@@ -137,33 +137,37 @@ const PricesPage = () => {
                 key={index}
                 className="rounded-xl border border-blue-500 p-6 flex flex-col justify-between bg-white shadow-sm"
               >
-                <div>
-                  <p className="font-bold text-[var(--text-dark)] mb-1 uppercase">{plan.name}</p>
+                <div className="flex flex-col items-start">
+                <div className="flex flex-col items-start gap-6 h-30">
+                  <span className="font-bold text-[var(--text-dark)] mb-1 uppercase" style={{fontSize:'20px'}}>{plan.name}</span>
                   <span className="text-sm font-normal text-[var(--primary--color)] ">{plan.description}</span>
-
-                  <div className="flex flex-row justify-start items-end gap-2 mt-2">
-                    <div>
-                      <span>from</span>
-                      <h3 className="text-3xl font-bold text-[var(--primary-color)] mb-1">
-                        {plan.price}
-                      </h3>
+                </div>
+                  <div className="flex flex-col items-start mt-10">
+                  
+                      <span style={{fontSize:'14px'}}>From</span>
+                     
+                    <div className="flex flex-row items-center">
+                        <h1 className="text-[var(--primary-color)]" style={{fontSize:'60px'}}>
+                          {plan.price}
+                        </h1>
+                        <div className="flex flex-col">
+                          <span style={{fontSize:'14px'}}>{plan.billing}</span>
+                          <span style={{fontSize:'14px'}}>(excl. VAT)</span>
+                      </div>
                     </div>
-                    <div className="flex flex-col">
-                      <span>{plan.billing}</span>
-                      <span>(excl. VAT)</span>
-                    </div>
+                    
                   </div>
 
                   <div className="mt-4 mb-4 space-y-2">
-                    <label className="flex items-center space-x-2 text-sm text-[var(--primary-color)]">
+                    <label className="flex items-center space-x-2 text-sm text-[var(--text-dark)]">
                       <input type="checkbox" className="accent-[var(--primary--color)]" />
                       <span>Finance Software</span>
                     </label>
-                    <label className="flex items-center space-x-2 text-sm text-[var(--primary-color)]">
+                    <label className="flex items-center space-x-2 text-sm text-[var(--text-dark)]">
                       <input type="checkbox" className="accent-[var(--primary--color)]" defaultChecked />
                       <span>Recruitment Software</span>
                     </label>
-                    <label className="flex items-center space-x-2 text-sm text-[var(--primary-color)]">
+                    <label className="flex items-center space-x-2 text-sm text-[var(--text-dark)]">
                       <input type="checkbox" className="accent-[var(--primary--color)]" />
                       <span>Business Software</span>
                     </label>
@@ -173,19 +177,19 @@ const PricesPage = () => {
                   
 
                   <p className="text-[var(--primary-color)] text-center text-sm font-semibold mt-4 mb-2">{plan.category}</p>
-                  <span className="my-2">Features Include:</span>
+                  <p className="my-2">Features Include:</p>
 
-                  <ul className="space-y-2 text-sm text-[var(--text-dark)] mb-4">
+                  <ul className="space-y-2 text-sm mt-2 text-[var(--text-dark)] mb-4">
                     {isExpanded ? featureList : featureList.slice(0, 7)}
                   </ul>
 
                   {featureList.length > 7 && (
                     <button
                       onClick={() => toggleExpand(index)}
-                      className="text-[var(--primary--color)] text-sm font-semibold flex items-center"
+                      className="text-[var(--primary-500)]  text-sm font-semibold flex items-end"
                     >
-                      {isExpanded ? "Show Less" : "More"}
-                      <svg className="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                      <p>{isExpanded ? "Show Less" : "More"}</p>
+                      <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M5.23 7.21a.75.75 0 011.06.02L10 10.586l3.71-3.354a.75.75 0 111.02 1.1l-4.25 3.84a.75.75 0 01-1.02 0l-4.25-3.84a.75.75 0 01.02-1.06z"
@@ -197,10 +201,10 @@ const PricesPage = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 mt-6">
-                  <button className="w-full py-2 text-center rounded-md font-semibold bg-[var(--primary-color)] text-white">
+                  <button className="button">
                     {plan.actions.quoteButton}
                   </button>
-                  <button className="w-full py-2 text-center rounded-md font-semibold border border-[var(--primary-color)] text-[var(--primary-color)]">
+                  <button className="inverseButton">
                     {plan.actions.demoButton}
                   </button>
                 </div>
@@ -214,20 +218,43 @@ const PricesPage = () => {
   <div className=" flex flex-col items-center text-center mb-6">
     <button
   onClick={() => setShowFeatureComparison((prev) => !prev)}
-  className="text-[var(--primary-color)] font-semibold border border-[var(--primary-color)] rounded-full px-4 py-1 flex items-center gap-2"
+  className="text-[var(--primary-600)] font-semibold border border-[var(--primary-100)] rounded-sm px-5 py-4 "
 >
-  {showFeatureComparison ? "Hide Feature Comparison" : "Complete Features Comparison"}
+  <p className="flex flex-row items-center gap-2">{showFeatureComparison ? "Hide Feature Comparison" : "Complete Features Comparison"}
   {showFeatureComparison ? (
-    <ChevronUpIcon className="h-4 w-4 text-[var(--primary-color)]" />
+    <ChevronUpIcon className="h-8 w-8 text-[var(--primary-500)]" />
   ) : (
-    <ChevronDownIcon className="h-4 w-4 text-[var(--primary-color)]" />
-  )}
+    <ChevronDownIcon className="h-8 w-8 text-[var(--primary-500)]" />
+  )}</p>
 </button>
   </div>
 
           
-          {showFeatureComparison && (
+    {showFeatureComparison && (
+      
   <div className="overflow-x-auto">
+    <div className="flex flex-row items-center justify-between w-full px-10 my-10">
+
+      <div className="flex flex-col opacity-0 items-center px-3 w-1/4 min-w-50">
+        <span style={{fontSize:'20px'}}>noll</span>
+      </div>
+      <div className="flex flex-col opacity-0 items-center  min-w-20">
+        <span style={{fontSize:'20px'}}>noll</span>
+      </div>
+
+      <div className="flex flex-col font-bold gap-2 items-center w-1/4 px-3 min-w-50">
+        <span style={{fontSize:'20px'}}>CORE</span>
+        <button className="inverseButton">Request Demo</button>
+      </div>
+      <div className="flex flex-col font-bold gap-2 items-center w-1/4 px-3 min-w-50">
+        <span style={{fontSize:'20px'}}>ESSENTIALS</span>
+        <button className="inverseButton">Request Demo</button>
+      </div>
+      <div className="flex flex-col font-bold gap-2 items-center w-1/4 px-3 min-w-50">
+        <span style={{fontSize:'20px'}}>ADVANCED</span>
+        <button className="inverseButton">Request Demo</button>
+      </div>
+    </div>
     <FeatureTable
       sectionTitle="HR Software"
       features={[
@@ -314,11 +341,11 @@ const FeatureTable: React.FC<FeatureTableProps> = ({
   <table className="min-w-full border-collapse border border-gray-200 text-sm">
     <thead>
       <tr className="bg-gray-100 text-[var(--primary-color)] text-center">
-        <th className="p-3 w-1/4 text-left">{sectionTitle}</th>
-        <th></th>
-        <th className="p-3 w-1/4">CORE</th>
-        <th className="p-3 w-1/4">ESSENTIALS</th>
-        <th className="p-3 w-1/4">ADVANCED</th>
+        <th className="p-3 w-1/4 min-w-50 text-left">{sectionTitle}</th>
+        <th className="p-3 min-w-20"></th>
+        <th className="p-3 min-w-50 w-1/4"></th>
+        <th className="p-3 min-w-50 w-1/4"></th>
+        <th className="p-3 min-w-50 w-1/4"></th>
       </tr>
     </thead>
     <tbody className="text-center text-gray-700">
