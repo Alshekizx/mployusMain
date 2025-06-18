@@ -4,43 +4,46 @@ import Link from 'next/link';
 import { FaBars } from 'react-icons/fa';
 import Image from 'next/image';
 import { useState } from 'react';
+import { ArrowDownRightIcon } from '@heroicons/react/24/solid';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
 
   return (
-    <header className="bg-[var(--card-bg)] text-[var(--text-dark)] border-b border-[var(--border-color)]  fixed top-0 w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <header className="bg-white relative flex flex-col items-center w-full top-0 ">
+      
+      <div className='max-w-[1400px] w-full px-[2rem] md:px-[5rem]'>     
+      <div className="  py-5 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/logos/MployusSoftwareLogo.png" alt="Logo" width={120} height={120} />
+          <Image src="/logos/MployusIrelandLogo.png" alt="Logo" width={187} height={54} />
         </Link>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-xl text-[var(--text-muted)]"
+          className="lg:hidden text-xl text-[var(--text-muted)]"
         >
           <FaBars />
         </button>
 
         {/* Navigation - Desktop */}
-        <nav className="hidden md:flex space-x-6 text-[var(--text-muted)] text-base relative">
+        <nav className="hidden lg:flex space-x-6 text-[var(--text-muted)] text-base relative">
+          <Link href="/" className="text-[var(--text-dark)] hover:text-[var(--text-muted)] transition"><p>Home</p></Link>
           <button
             onClick={() => setIsProductsOpen(!isProductsOpen)}
-            className="hover:text-[var(--text-dark)] transition relative"
+            className="text-[var(--text-dark)] hover:text-[var(--text-muted)] transition relative"
           >
-            Products
+            <p className='flex items-center gap-1'>Products
+              <ArrowDownRightIcon  className="h-5 w-5 text-[--secondary-400]" aria-hidden="true" />
+            </p>
           </button>
-
-          <Link href="#about" className="hover:text-[var(--text-dark)] transition">About Us</Link>
-          <Link href="#pricing" className="hover:text-[var(--text-dark)] transition">Pricing</Link>
-          <Link href="#blog" className="hover:text-[var(--text-dark)] transition">Blog</Link>
+          <Link href="/prices" className="text-[var(--text-dark)] hover:text-[var(--text-muted)] transition"><p>Pricing</p></Link>
         </nav>
 
         {/* Icons - Logos Group */}
-        <div className="hidden md:flex items-center space-x-4 text-[var(--text-muted)] text-lg">
+        <div className="hidden lg:flex items-center space-x-4 text-[var(--text-muted)] text-lg">
           <Link href="/" className="flex items-center space-x-2">
             <Image src="/logos/MployusLocumsLogo.png" alt="Logo" width={70} height={70} />
           </Link>
@@ -57,34 +60,43 @@ export default function Header() {
       {isProductsOpen && (
         <div
           onMouseLeave={() => setIsProductsOpen(false)}
-          className=" hidden md:grid grid-cols-3 gap-4 p-6  absolute top-[100%] left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-5xl text-sm"
-          style={{ backgroundColor: 'var(--background )' }}
+          className=" hidden md:grid grid-cols-2 gap-x-10 gap-y-5 p-6  absolute top-[100%] left-1/2 transform -translate-x-1/2 w-[90%] max-w-4xl max-h-[80vh] overflow-y-auto"
+          style={{ backgroundColor: 'var(--secondary-100 )' }}
         >
           {[
-            { title: "HR Software", desc: "Manage staff documents, shifts, attendance in our all-in-one HR software solution." },
-            { title: "Finance Software", desc: "Manage workplace budgets, income, expenses and more." },
-            { title: "Recruitment Software", desc: "Manage hiring with our cutting-edge recruitment software." },
-            { title: "Business Management Software", desc: "Record transactions, assets, job subscriptions, sales reports and drive business success." },
-            { title: "HR & Employment Law Advice", desc: "Expert HR solutions and employment law guidance to keep your business compliant." },
-            { title: "Jobs & Recruitment", desc: "Connect with top talent with our expert recruitment services." },
-            { title: "Locums Provision", desc: "Efficient locum & agency staff provision services for healthcare facilities." },
+            { iconImg: "/images/HR.png",title: "HR Software", desc: "Manage staff documents, shifts, and attendance" },
+            { iconImg: "/images/Law.png",title: "HR & Employment Law Advice", desc: "Expert HR and employment law support" },
+            { iconImg: "/images/Finance.png",title: "Finance Software", desc: "Track budgets, income, and expenses with ease." },
+            { iconImg: "/images/Locum.png",title: "Locums Provision", desc: "Browse open shifts and send locum requests" },
+            { iconImg: "/images/Recruitment.png",title: "Recruitment Software", desc: "Simplify hiring with our smart recruitment tool." },
+            { iconImg: "/images/Vector.png",title: "Jobs & Recruitment", desc: "Discover jobs. Connect with top talent." },
+            { iconImg: "/images/Business.png",title: "Business Management Software", desc: "Track sales, assets, and subscriptions." },
+            
           ].map((item, idx) => (
-            <button key={idx} className="modalCard space-y-1 text-start" onClick={() => {}}>
-              <h4 className="font-semibold text-[var(--text-dark)]">{item.title}</h4>
-              <p className="text-[var(--text-muted)]">{item.desc}</p>
+            <button key={idx} className="card space-y-1 text-start" onClick={() => {}}>
+              <div className='flex flex-row gap-1'>
+                <Image src={item.iconImg} alt={item.title} height={100} width={100} className="w-6 h-full" />
+                <span className="font-semibold text-[var(--text-dark)] hover:text-[var(--text-muted)]">{item.title}</span>
+                </div>
+              <span className="text-[var(--text-muted)]" style={{fontSize:'14px'}}>{item.desc}</span>
             </button>
           ))}
         </div>
       )}
 
       {/* Mobile Menu Dropdown */}
-      {isMobileMenuOpen && (
-  <div className="md:hidden bg-[var(--card-bg)] px-4 pb-4 space-y-2 text-[var(--text-muted)]">
+      
+    </div>
+    {isMobileMenuOpen && (
+  <div className="lg:hidden top-20 bg-[var(--secondary-100)] p-4 space-y-2 w-full absolute ">
+    <Link href="/" className="block text-[var(--text-dark)] hover:text-[var(--text-muted)]"><p>Home</p></Link>
     <button
       onClick={() => setIsProductsOpen(!isProductsOpen)}
-      className="block w-full text-left hover:text-[var(--text-dark)]"
+      className="block w-full text-left text-[var(--text-dark)] hover:text-[var(--text-muted)]"
     >
-      Products
+      <p className='flex items-center gap-1'>Products
+              <ArrowDownRightIcon  className="h-5 w-5 text-[--secondary-400]" aria-hidden="true" />
+            </p>
     </button>
 
     {/* Mobile Products Dropdown */}
@@ -101,7 +113,7 @@ export default function Header() {
             ].map((item, idx) => (
               <button
                 key={idx}
-                className="block w-full text-left hover:text-[var(--text-dark)]"
+                className="block w-full text-left text-[var(--text-dark)] hover:text-[var(--text-muted)]"
                 onClick={() => {}}
               >
                 {item.title}
@@ -109,10 +121,7 @@ export default function Header() {
             ))}
           </div>
         )}
-
-        <Link href="#about" className="block hover:text-[var(--text-dark)]">About Us</Link>
-        <Link href="#pricing" className="block hover:text-[var(--text-dark)]">Pricing</Link>
-        <Link href="#blog" className="block hover:text-[var(--text-dark)]">Blog</Link>
+        <Link href="#pricing" className="block text-[var(--text-dark)] hover:text-[var(--text-muted)]"><p>Pricing</p></Link>
 
         <div className="flex justify-start space-x-4 pt-2">
           <div>
