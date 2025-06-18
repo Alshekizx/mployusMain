@@ -3,9 +3,11 @@
 import { JSX, useState } from "react";
 import HeroSection from "../component/heroSection";
 import { pricingPlans, PricingPlan, featureDetails } from "./priceData";
-import { CheckCircleIcon, XCircleIcon,InformationCircleIcon } from "@heroicons/react/24/solid";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+
 import React from "react";
-import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
 
 const getIcon = (enabled: boolean) => {
   return enabled ? (
@@ -321,38 +323,46 @@ const FeatureTable: React.FC<FeatureTableProps> = ({
     </thead>
     <tbody className="text-center text-gray-700">
       {features.map((feature, idx) => (
-        <React.Fragment key={idx}>
-          <tr className="border-t border-gray-200">
-            <td className="text-left p-3">{feature}</td>
-            <td>
+  <React.Fragment key={idx}>
+    <tr className="border-t border-gray-200 relative">
+      <td className="text-left p-3">{feature}</td>
+      <td className="relative">
+        <button
+          onClick={() =>
+            setOpenDropdownFeature(prev =>
+              prev === feature ? null : feature
+            )
+          }
+          className="relative"
+        >
+          <InformationCircleIcon className="h-5 w-5 text-[var(--secondary-color)]" />
+        </button>
+
+        {/* Small popup under the icon */}
+        {openDropdownFeature === feature && (
+          <div className="absolute z-10 left-1/2 -translate-x-1/2 top-full mt-2 w-64 bg-white text-left text-sm text-gray-700 p-3 border border-gray-200 rounded-lg shadow-md">
+            <div className="flex justify-between items-center mb-1">
+              <span className="text-[var(--primary-color)]">{feature}</span>
               <button
-                onClick={() =>
-                  setOpenDropdownFeature(prev =>
-                    prev === feature ? null : feature
-                  )
-                }
+                onClick={() => setOpenDropdownFeature(null)}
+                className="text-gray-500 hover:text-gray-700"
               >
-                <InformationCircleIcon className="h-5 w-5 text-[var(--secondary-color)]" />
+                ✕
               </button>
-            </td>
-            <td>{getIcon(getFeatureStatus("CORE", sectionKey, feature))}</td>
-            <td>{getIcon(getFeatureStatus("ESSENTIALS", sectionKey, feature))}</td>
-            <td>{getIcon(getFeatureStatus("ADVANCED", sectionKey, feature))}</td>
-          </tr>
-          {openDropdownFeature === feature && (
-            <tr>
-              <td
-                colSpan={5}
-                className="bg-gray-50 p-3 text-left text-sm text-gray-700 border-t border-b border-gray-200"
-              >
-                <span className="block">
-                 {featureDetails[sectionKey]?.[feature] || "No details available."}
-                </span>
-              </td>
-            </tr>
-          )}
-        </React.Fragment>
-      ))}
+            </div>
+            <span>
+              {featureDetails[sectionKey]?.[feature] || "No details available."}
+            </span>
+          </div>
+        )}
+      </td>
+      <td>{getIcon(getFeatureStatus("CORE", sectionKey, feature))}</td>
+      <td>{getIcon(getFeatureStatus("ESSENTIALS", sectionKey, feature))}</td>
+      <td>{getIcon(getFeatureStatus("ADVANCED", sectionKey, feature))}</td>
+    </tr>
+  </React.Fragment>
+))}
+
     </tbody>
   </table>
 );
