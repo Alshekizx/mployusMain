@@ -2,6 +2,7 @@
 
 import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type Breadcrumb = {
   label: string;
@@ -22,7 +23,14 @@ export default function HeroSection({
   backgroundClassName = 'bg-[var(--primary-color)] card-texture-bg',
 }: HeroSectionProps) {
   return (
-    <div className={`flex flex-col items-center w-full ${backgroundClassName}`}>
+    <div className={`relative flex flex-col items-center w-full bg-[var(--primary-color)] `}>
+      <Image
+              src="/images/bg222.png"
+              alt="bg pattern"
+              height={400}
+              width={500}
+              className="absolute hidden lg:block w-80 right-0 top-0 z-0"
+              />
       <div
       className={`relative max-w-[1400px]  w-full flex flex-col items-center justify-center  px-4 h-90 text-white text-center `}
     >

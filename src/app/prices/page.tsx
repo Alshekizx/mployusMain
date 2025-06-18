@@ -74,15 +74,12 @@ const PricesPage = () => {
   return (
     <section className="flex flex-col items-center">
       <HeroSection
-        title="Our Prices"
-        description="tips on recruitment and shift-based workforce management for HR teams, locum workers, and business leaders."
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Our Prices' },
-        ]}
+        title="Flexible Pricing for Smarter Workforce Management"
+        description="All-in-one workforce management tailored to fit. Get powerful tools, expert support, and a custom quote that suits your business."
+        
       />
 
-      <div className="containerDiv">
+      <div className="containerDiv mt-10">
         <div className="text-center mb-14">
           <p className="text-[var(--primary-color)] text-sm mb-4">
             Let us know the number of your employees to get an estimates cost
